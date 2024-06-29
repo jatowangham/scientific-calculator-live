@@ -14,7 +14,7 @@
             <div class="col-12 offset-md-3 col-md-6">
                 <div class="card bg-success">
                     <div class="card-body">
-                        <input id="calc-display" readonly class="form-control form-control-lg" type="text" aria-label=".form-control-lg example">
+                        <input id="calc-display" readonly class="form-control form-control-lg text-end" type="text" aria-label=".form-control-lg example">
                     </div>
 
                     <div class="row gx-1 px-3 mb-3">
@@ -86,14 +86,28 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(){
-            console.log("gello");
+            console.log("hello");
             const display =  document.getElementById("calc-display");
-            const button = document.getElementsByClassName("btn");
+            const buttons = document.getElementsByClassName("btn");
+
+            let currentValue = "";
             
-            button[0].addEventListener("click", function(){
-                console.log("button is clicked");
-            })
-        })
+            for(let i = 0; i < buttons.length; i++){
+                const button = buttons[i];
+                button.addEventListener("click", function(){
+                    const value = button.innerText;
+
+                    if(value == "AC"){
+                        currentValue == "";
+                        display.value = currentValue;
+                    }else{  
+                    currentValue += value;
+                    console.log('currentValue:', currentValue);
+                    display.value = currentValue;
+                    }
+                })
+            }
+        });
     </script>
 
 
